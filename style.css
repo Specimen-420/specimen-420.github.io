@@ -93,7 +93,6 @@ color: #00AA00;
   transition: border-width 0.3s ease; /* Add a transition */
 }
 
-/* In your style.css file */
-div#selection-box:hover { 
-  border-width: 10px !important;  
+#selection-box:hover {
+  border-width: 10px; 
 }
