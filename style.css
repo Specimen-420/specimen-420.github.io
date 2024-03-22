@@ -85,14 +85,12 @@ color: #00AA00;
 #selection-box {
   position: relative;
   border-radius: 20px;
-  border: 2px solid #222222; 
+  border: 2px solid #222222;
   padding: 10px; 
   width: 150px; /* Consider removing or changing to 'max-width' */
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
-  transition: border-width 0.3s ease; /* Add a transition */
 }
-
 #selection-box:hover {
-  border-width: 10px; 
+  border: 4px solid #222222;
 }
