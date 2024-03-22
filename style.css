@@ -82,7 +82,7 @@ color: #00AA00;
   justify-content: center; /* Center the boxes */
 }
 
-#selection-box {
+#1 {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -91,15 +91,120 @@ color: #00AA00;
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#selection-box:hover { 
+div#1:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#selection-box.clicked { 
+#1.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#selection-box.clicked:hover { 
+div#1.clicked:hover { 
+  border: 2px solid #00AA00 !important;
+}
+#2 {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#2:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#2.clicked { 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-color: #00AA00; /* Keep the border consistent */
+}
+
+div#2.clicked:hover { 
+  border: 2px solid #00AA00 !important;
+}
+#3 {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#3:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#3.clicked { 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-color: #00AA00; /* Keep the border consistent */
+}
+
+div#3.clicked:hover { 
+  border: 2px solid #00AA00 !important;
+}
+#4 {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#4:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#4.clicked { 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-color: #00AA00; /* Keep the border consistent */
+}
+
+div#4.clicked:hover { 
+  border: 2px solid #00AA00 !important;
+}
+#5 {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#5:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#5.clicked { 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-color: #00AA00; /* Keep the border consistent */
+}
+
+div#5.clicked:hover { 
+  border: 2px solid #00AA00 !important;
+}
+#6 {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#6:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#6.clicked { 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-color: #00AA00; /* Keep the border consistent */
+}
+
+div#6.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
