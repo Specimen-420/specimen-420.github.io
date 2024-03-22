@@ -77,16 +77,19 @@ color: #00AA00;
 }
 .row {
   display: grid;
-  gap: 20px;
-  grid: auto / auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+  gap: 20px; 
+  justify-content: center; /* Center the boxes */
 }
+
 #selection-box {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
   border-bottom: 1px solid #222222;
   padding: 10px; 
-  width: 150px;
-  height: 150px;
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
 }
  
