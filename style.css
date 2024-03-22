@@ -1,7 +1,5 @@
 @import url("https://fonts.xz.style/serve/inter.css");
 
-@import url("https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css");
-
 :root {
   --nc-tx-1: #ffffff;
   --nc-tx-2: #eeeeee;
@@ -93,6 +91,7 @@ color: #00AA00;
   transition: border-width 0.3s ease; /* Add a transition */
 }
 
-#selection-box:hover {
-  border-width: 10px; 
+/* In your style.css file */
+div#selection-box:hover { 
+  border-width: 10px !important;  
 }
