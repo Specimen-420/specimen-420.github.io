@@ -1,9 +1,16 @@
-// Get all the boxes
+let selectedBoxId = null; // Stores the ID of the selected box
+
 const boxes = document.querySelectorAll('#selection-box');
 
-// Add a click event listener to each box
 boxes.forEach(box => {
   box.addEventListener('click', function() {
-    this.classList.toggle('clicked'); // Toggle the 'clicked' class
+    // Deselect previously selected box (if any)
+    if (selectedBoxId) {
+      document.getElementById(selectedBoxId).classList.remove('clicked');
+    }
+    
+    // Update selected box and add 'clicked' class
+    selectedBoxId = this.id;
+    this.classList.add('clicked');
   });
 });

@@ -96,5 +96,10 @@ div#selection-box:hover {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 #selection-box.clicked { 
+  background-color: #00AA00; /* Your desired green color */
   border-color: #00AA00; /* Keep the border consistent */
+}
+
+#selection-box.clicked:hover { 
+  /* No changes here - maintain green styles */
 }
