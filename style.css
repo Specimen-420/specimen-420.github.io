@@ -92,3 +92,6 @@ color: #00AA00;
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
+div#selection-box:hover { 
+  border-width: 10px !important;  
+}
