@@ -1,3 +1,7 @@
+@import url("https://fonts.xz.style/serve/inter.css");
+
+@import url("https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css");
+
 :root {
   --nc-tx-1: #ffffff;
   --nc-tx-2: #eeeeee;
@@ -35,7 +39,7 @@
       text-decoration: none;
       color: white;
   }
-  .head a {
+  .hc a {
       text-decoration: none;
       color: white;
   }
@@ -43,7 +47,7 @@
   position: relative;
   display: inline-block;
  }
-.head:hover a {
+.hc:hover a {
       text-decoration: none;
       color: #E14052;
   }
@@ -72,12 +76,12 @@ color: #E14052;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .row {
-  display: flex;
-  gap: 25px;
+  display: grid;
+  gap: 40px;
+  grid: 180px / auto auto auto;
 }
 .container {
   display: relative;
-
 }
 #rcorners2 {
   position: relative;
