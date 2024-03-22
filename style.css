@@ -78,7 +78,7 @@ color: #00AA00;
 .row {
   display: grid;
   gap: 20px;
-  grid: 250px / auto auto auto auto;
+  grid: 500px / auto auto auto auto;
 }
 #selection-box {
   position: relative;
