@@ -82,7 +82,7 @@ color: #00AA00;
   justify-content: center; /* Center the boxes */
 }
 
-#1 {
+#one {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -91,19 +91,19 @@ color: #00AA00;
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#1:hover { 
+div#one:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#1.clicked { 
+#one.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#1.clicked:hover { 
+div#one.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
-#2 {
+#two {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -112,19 +112,19 @@ div#1.clicked:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#2:hover { 
+div#two:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#2.clicked { 
+#two.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#2.clicked:hover { 
+div#two.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
-#3 {
+#three {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -133,19 +133,19 @@ div#2.clicked:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#3:hover { 
+div#three:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#3.clicked { 
+#three.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#3.clicked:hover { 
+div#three.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
-#4 {
+#four {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -154,19 +154,19 @@ div#3.clicked:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#4:hover { 
+div#four:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#4.clicked { 
+#four.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#4.clicked:hover { 
+div#four.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
-#5 {
+#five {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -175,19 +175,19 @@ div#4.clicked:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#5:hover { 
+div#five:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#5.clicked { 
+#five.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#5.clicked:hover { 
+div#five.clicked:hover { 
   border: 2px solid #00AA00 !important;
 }
-#6 {
+#six {
   position: relative;
   border-radius: 20px;
   border: 2px solid #222222;
@@ -196,17 +196,15 @@ div#5.clicked:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#6:hover { 
+div#six:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#6.clicked { 
+#six.clicked { 
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-div#6.clicked:hover { 
+div#six.clicked:hover { 
   border: 2px solid #00AA00 !important;
-}
-#babab{
 }
