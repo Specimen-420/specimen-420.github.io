@@ -100,6 +100,6 @@ div#selection-box:hover {
   border-color: #00AA00; /* Keep the border consistent */
 }
 
-#selection-box.clicked:hover { 
-  border-color: #00AA00;
+div#selection-box.clicked:hover { 
+  border: 2px solid #00AA00 !important;
 }
