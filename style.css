@@ -89,7 +89,8 @@ color: #00AA00;
   margin: 0; /* Reset browser defaults */
 }
 div#selection-box:hover { 
-  border: 10px !important;  
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 @import url("https://fonts.xz.style/serve/inter.css");
