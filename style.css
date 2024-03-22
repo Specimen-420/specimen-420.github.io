@@ -77,7 +77,8 @@ color: #00AA00;
 }
 .row {
   display: grid;
-  grid: 140px / auto auto auto auto;
+  gap: 20px;
+  grid: 200px / auto auto auto auto;
 }
 #selection-box {
   position: relative;
