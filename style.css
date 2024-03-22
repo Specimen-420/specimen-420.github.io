@@ -1,5 +1,7 @@
 @import url("https://fonts.xz.style/serve/inter.css");
 
+@import url("https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css");
+
 :root {
   --nc-tx-1: #ffffff;
   --nc-tx-2: #eeeeee;
