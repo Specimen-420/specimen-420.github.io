@@ -1,16 +1,18 @@
-let selectedBoxId = null; // Stores the ID of the selected box
+// Get all the boxes
+var boxes = document.querySelectorAll('#twelve, #thirteen, #fourteen, #fifteen');
 
-const boxes = document.querySelectorAll('#selection-box');
-
-boxes.forEach(box => {
-  box.addEventListener('click', function() {
-    // Deselect previously selected box (if any)
-    if (selectedBoxId) {
-      document.getElementById(selectedBoxId).classList.remove('clicked');
-    }
-    
-    // Update selected box and add 'clicked' class
-    selectedBoxId = this.id;
-    this.classList.add('clicked');
+// Function to handle box click
+function handleBoxClick(event) {
+  // Remove 'selected' class from all boxes
+  boxes.forEach(function(box) {
+    box.classList.remove('selected');
   });
+
+  // Add 'selected' class to the clicked box
+  event.currentTarget.classList.add('selected');
+}
+
+// Attach click event listener to all boxes
+boxes.forEach(function(box) {
+  box.addEventListener('click', handleBoxClick);
 });

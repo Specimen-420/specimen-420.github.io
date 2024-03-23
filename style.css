@@ -95,14 +95,6 @@ div#one:hover {
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#one.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
-}
-
-div#one.clicked:hover { 
-  border: 2px solid #00AA00 !important;
-}
 #two {
   position: relative;
   border-radius: 20px;
@@ -115,14 +107,6 @@ div#one.clicked:hover {
 div#two:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-#two.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
-}
-
-div#two.clicked:hover { 
-  border: 2px solid #00AA00 !important;
 }
 #three {
   position: relative;
@@ -137,14 +121,6 @@ div#three:hover {
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#three.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
-}
-
-div#three.clicked:hover { 
-  border: 2px solid #00AA00 !important;
-}
 #four {
   position: relative;
   border-radius: 20px;
@@ -157,14 +133,6 @@ div#three.clicked:hover {
 div#four:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-#four.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
-}
-
-div#four.clicked:hover { 
-  border: 2px solid #00AA00 !important;
 }
 #five {
   position: relative;
@@ -179,14 +147,6 @@ div#five:hover {
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#five.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
-}
-
-div#five.clicked:hover { 
-  border: 2px solid #00AA00 !important;
-}
 #six {
   position: relative;
   border-radius: 20px;
@@ -200,11 +160,111 @@ div#six:hover {
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-#six.clicked { 
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-color: #00AA00; /* Keep the border consistent */
+#seven {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
 }
-
-div#six.clicked:hover { 
-  border: 2px solid #00AA00 !important;
+div#seven:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#eight {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#eight:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#nine {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#nine:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#ten {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#ten:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#eleven {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#twelve:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#thirteen {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#thirteen:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#fourteen {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#forteen:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#fifteen {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
+div#fifteen:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+/* Style for selected box */
+.selected {
+  border-color: #00AA00 !important;
 }
