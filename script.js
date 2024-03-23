@@ -1,5 +1,5 @@
 // Get all the boxes
-var boxes = document.querySelectorAll('#twelve, #thirteen, #fourteen, #fifteen');
+var boxes = document.querySelectorAll('#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #ten, #eleven, #twelve, #thirteen, #fourteen, #fifteen, #sixteen, #seventeen, #eighteen');
 
 // Function to handle box click
 function handleBoxClick(event) {
