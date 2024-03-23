@@ -221,6 +221,19 @@ div#ten:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
+div#eleven:hover { 
+  border: 2px solid #FFFFFF !important;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#twelve {
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid #222222;
+  padding: 10px; 
+  width: 150px; /* Consider removing or changing to 'max-width' */
+  height: 150px; /* Consider removing or changing to 'max-height' */
+  margin: 0; /* Reset browser defaults */
+}
 div#twelve:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -247,7 +260,7 @@ div#thirteen:hover {
   height: 150px; /* Consider removing or changing to 'max-height' */
   margin: 0; /* Reset browser defaults */
 }
-div#forteen:hover { 
+div#fourteen:hover { 
   border: 2px solid #FFFFFF !important;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
