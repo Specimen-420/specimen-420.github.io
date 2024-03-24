@@ -75,7 +75,7 @@
 color: #00AA00;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-.row {
+.row, .body-options, .eyes-options, .shirt-options, .jacket-options, .pants-options, .shoes-options{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
   gap: 20px; 

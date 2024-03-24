@@ -20,15 +20,14 @@ rows.forEach(function(row) {
 });
 
 function getSelectedElements() {
-  const selectedElements = {
-    body: document.querySelector('.row:nth-child(1) .selected')?.id,
-    eyes: document.querySelector('.row:nth-child(2) .selected')?.id,
-    shirt: document.querySelector('.row:nth-child(3) .selected')?.id,
-    jacket: document.querySelector('.row:nth-child(4) .selected')?.id,
-    pants: document.querySelector('.row:nth-child(5) .selected')?.id,
-    shoes: document.querySelector('.row:nth-child(6) .selected')?.id
+  return {
+    body: document.querySelector('.body-options .selected')?.id,
+    eyes: document.querySelector('.eyes-options .selected')?.id,
+    shirt: document.querySelector('.shirt-options .selected')?.id, // Changes here
+    jacket: document.querySelector('.jacket-options .selected')?.id, // Changes here
+    pants: document.querySelector('.pants-options .selected')?.id,
+    shoes: document.querySelector('.shoes-options .selected')?.id
   };
-  return selectedElements;
 }
 
 function compositeImages(selectedElements) {
