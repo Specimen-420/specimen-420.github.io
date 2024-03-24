@@ -18,3 +18,57 @@ rows.forEach(function(row) {
     box.addEventListener('click', handleBoxClick);
   });
 });
+
+function getSelectedElements() {
+  const selectedElements = {
+    body: document.querySelector('.row:nth-child(1) .selected')?.id,
+    eyes: document.querySelector('.row:nth-child(2) .selected')?.id,
+    shirt: document.querySelector('.row:nth-child(3) .selected')?.id,
+    jacket: document.querySelector('.row:nth-child(4) .selected')?.id,
+    pants: document.querySelector('.row:nth-child(5) .selected')?.id,
+    shoes: document.querySelector('.row:nth-child(6) .selected')?.id
+  };
+  return selectedElements;
+}
+
+function compositeImages(selectedElements) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Fixed canvas dimensions 
+  canvas.width = 64; 
+  canvas.height = 64; 
+
+  const promises = [];
+  const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
+
+  layerOrder.forEach((layer) => {
+    if (selectedElements[layer]) {
+      const img = new Image();
+      img.src = `${selectedElements[layer]}.png`;
+      promises.push(new Promise((resolve) => {
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0);
+          resolve();
+        }
+      }));
+    }
+  });
+
+  // ... rest of your download logic
+
+
+  Promise.all(promises).then(() => {
+    // Image compositing complete
+    const downloadLink = document.createElement('a');
+    downloadLink.href = canvas.toDataURL('image/png');
+    downloadLink.download = 'my_skin.png';
+    downloadLink.click();
+  });
+}
+
+const downloadButton = document.getElementById('download');
+downloadButton.addEventListener('click', () => {
+  const selection = getSelectedElements();
+  compositeImages(selection);
+});
