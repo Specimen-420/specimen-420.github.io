@@ -34,10 +34,10 @@ function getSelectedElements() {
 function compositeImages(selectedElements) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  
+
   // Fixed canvas dimensions 
-  canvas.width = 64; 
-  canvas.height = 64; 
+  canvas.width = 64;
+  canvas.height = 64;
 
   const promises = [];
   const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
@@ -54,9 +54,6 @@ function compositeImages(selectedElements) {
       }));
     }
   });
-
-  // ... rest of your download logic
-
 
   Promise.all(promises).then(() => {
     // Image compositing complete
