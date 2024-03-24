@@ -44,11 +44,11 @@ function compositeImages(selectedElements) {
 
   layerOrder.forEach((layer) => {
     if (selectedElements[layer]) {
-      const img = new Image();
+      const imageNumber = selectedElements[layer];
+      const filename = imageNumber + '.png';
+      console.log("Loading image:", filename); // Logging for debugging
 
-      // Construct image filenames dynamically
-      const imageNumber = selectedElements[layer]; 
-      const filename = imageNumber + '.png'; 
+      const img = new Image();
       img.src = filename; 
 
       promises.push(new Promise((resolve) => {
