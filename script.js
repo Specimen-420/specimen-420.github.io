@@ -45,7 +45,12 @@ function compositeImages(selectedElements) {
   layerOrder.forEach((layer) => {
     if (selectedElements[layer]) {
       const img = new Image();
-      img.src = `${selectedElements[layer]}.png`;
+
+      // Construct image filenames dynamically
+      const imageNumber = selectedElements[layer]; 
+      const filename = imageNumber + '.png'; 
+      img.src = filename; 
+
       promises.push(new Promise((resolve) => {
         img.onload = () => {
           ctx.drawImage(img, 0, 0);
