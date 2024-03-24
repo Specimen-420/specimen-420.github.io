@@ -320,3 +320,6 @@ div#eighteen:hover {
 .selected {
   border-color: #00AA00 !important;
 }
+.selected:hover {
+  border-color: #00AA00 !important;
+}
