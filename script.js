@@ -65,13 +65,21 @@ function compositeImages(selectedElements) {
   });
 
   Promise.all(promises).then(() => {
-    // Image compositing complete
-    const downloadLink = document.createElement('a');
-    downloadLink.href = canvas.toDataURL('image/png');
-    downloadLink.download = 'my_skin.png';
-    downloadLink.click();
-  });
-}
+    layerOrder.forEach((layer) => {
+      if (selectedElements[layer]) {
+        const imageNumber = selectedElements[layer];
+        const filename = imageNumber + '.png';
+        const img = new Image();
+        img.src = filename; 
+        ctx.drawImage(img, 0, 0); // Draw the image here
+      }
+    });
+    
+    img.onload = () => {
+      console.log("Image Loaded: ", filename); // Add this line
+      ctx.drawImage(img, 0, 0);
+      resolve();
+  }
 
 const downloadButton = document.getElementById('download');
 downloadButton.addEventListener('click', () => {
