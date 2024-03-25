@@ -55,12 +55,17 @@ function compositeImages(selectedElements) {
       const img = new Image();
       img.src = filename; 
 
-      promises.push(new Promise((resolve) => {
+      img.onerror = () => {
+        console.error("Error loading image:", filename);
+      };
+
+      promises.push(new Promise((resolve, reject) => {
         img.onload = () => {
           console.log("Image Loaded: ", filename); // Log for debugging 
           ctx.drawImage(img, 0, 0); 
           resolve(); // Resolve the promise after drawing
         }
+        img.onerror = reject; // Reject the promise if there's an error
       }));
     }
   });
@@ -85,5 +90,7 @@ function compositeImages(selectedElements) {
 
     // Remove the link from the body
     document.body.removeChild(link);
+  }).catch((error) => {
+    console.error("Error in Promise.all: ", error);
   });
 }
