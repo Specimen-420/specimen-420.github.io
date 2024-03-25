@@ -39,13 +39,8 @@ function compositeImages(selectedElements) {
   console.log("compositeImages called with:", selectedElements);
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  const downloadButton = document.getElementById('download');
-downloadButton.addEventListener('click', () => {
-  const selection = getSelectedElements();
-  compositeImages(selection);
-});
 
-  // Fixed canvas dimensions 
+  // Fixed canvas dimensions (adjust if needed) 
   canvas.width = 64;
   canvas.height = 64;
 
@@ -67,11 +62,11 @@ downloadButton.addEventListener('click', () => {
 
       promises.push(new Promise((resolve, reject) => {
         img.onload = () => {
-          console.log("Image Loaded: ", filename); // Log for debugging 
-          ctx.drawImage(img, 0, 0); 
-          resolve(); // Resolve the promise after drawing
+          console.log("Image Loaded: ", filename); 
+          ctx.drawImage(img, 0, 0); // Draw the loaded image on the canvas
+          resolve(); 
         }
-        img.onerror = reject; // Reject the promise if there's an error
+        img.onerror = reject; 
       }));
     }
   });
@@ -83,10 +78,10 @@ downloadButton.addEventListener('click', () => {
       // Get the data URL of the canvas
       const dataURL = canvas.toDataURL('image/png'); 
 
-      // Create a temporary link element (not added to the DOM)
+      // Create a temporary link element 
       const downloadLink = document.createElement('a');
       downloadLink.href = dataURL;
-      downloadLink.download = 'my_skin.png'; // Set the desired filename
+      downloadLink.download = 'my_skin.png'; 
 
       // Simulate a click to trigger the download
       downloadLink.click(); 
@@ -95,3 +90,10 @@ downloadButton.addEventListener('click', () => {
       console.error("Error in Promise.all: ", error);
     });
 }
+
+// Event listener for download button 
+const downloadButton = document.getElementById('download');
+downloadButton.addEventListener('click', () => {
+  const selection = getSelectedElements();
+  compositeImages(selection);
+});
