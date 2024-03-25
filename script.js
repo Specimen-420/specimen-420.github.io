@@ -1,13 +1,38 @@
 // Function to handle box click 
 function handleBoxClick(event) {
-  // ... (Your existing code) ... 
+  // Remove 'selected' class from all boxes in this section
+  Array.from(event.currentTarget.parentNode.children).forEach(function (box) {
+    box.classList.remove('selected');
+  });
+
+  // Add 'selected' class to the clicked box
+  event.currentTarget.classList.add('selected');
 }
 
-// Attach click event listeners ...
-// ... (Your existing code) ...
+// Attach click event listeners directly to the boxes:
+const bodyOptions = document.querySelectorAll('.body-options div');
+const eyesOptions = document.querySelectorAll('.eyes-options div');
+const shirtOptions = document.querySelectorAll('.shirt-options div');
+const jacketOptions = document.querySelectorAll('.jacket-options div');
+const pantsOptions = document.querySelectorAll('.pants-options div');
+const shoesOptions = document.querySelectorAll('.shoes-options div');
+
+bodyOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+eyesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+shirtOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+jacketOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+pantsOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+shoesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
 
 function getSelectedElements() {
-  // ... (Your existing code) ... 
+  return {
+    body: document.querySelector('.body-options .selected')?.id,
+    eyes: document.querySelector('.eyes-options .selected')?.id,
+    shirt: document.querySelector('.shirt-options .selected')?.id,
+    jacket: document.querySelector('.jacket-options .selected')?.id,
+    pants: document.querySelector('.pants-options .selected')?.id,
+    shoes: document.querySelector('.shoes-options .selected')?.id
+  };
 }
 
 function compositeImages(selectedElements) {
