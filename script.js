@@ -1,3 +1,6 @@
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+
 // Function to handle box click 
 function handleBoxClick(event) {
   // Remove 'selected' class from all boxes in this section
@@ -37,8 +40,6 @@ function getSelectedElements() {
 
 function compositeImages(selectedElements) {
   console.log("compositeImages called with:", selectedElements);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
 
   // Fixed canvas dimensions (adjust if needed) 
   canvas.width = 64;
