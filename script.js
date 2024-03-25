@@ -1,6 +1,3 @@
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
-
 // Function to handle box click 
 function handleBoxClick(event) {
   // Remove 'selected' class from all boxes in this section
@@ -41,12 +38,16 @@ function getSelectedElements() {
 function compositeImages(selectedElements) {
   console.log("compositeImages called with:", selectedElements);
 
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
   // Fixed canvas dimensions (adjust if needed) 
   canvas.width = 64;
   canvas.height = 64;
 
   // Image loading with promises
   const promises = [];
+  const layerMap = {};
   const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
 
   layerOrder.forEach((layer) => {
@@ -65,7 +66,8 @@ function compositeImages(selectedElements) {
       promises.push(new Promise((resolve, reject) => {
         img.onload = () => {
           console.log("Image Loaded: ", filename); 
-          ctx.drawImage(img, 0, 0); // Draw the loaded image on the canvas
+          // ctx.drawImage(img, 0, 0); // Draw the loaded image on the canvas
+          layerMap[layer] = img;
           resolve(); 
         }
         img.onerror = reject; 
@@ -77,6 +79,11 @@ function compositeImages(selectedElements) {
   Promise.all(promises)
     .then(() => {
       console.log("All images loaded and drawn.");
+      
+      // Applying all images
+      layerOrder.forEach((layer) => {
+        ctx.drawImage(img, 0, 0);
+      });
 
       // Small delay before download (optional)
       setTimeout(() => {
@@ -90,7 +97,8 @@ function compositeImages(selectedElements) {
     })
     .catch((error) => {
       console.error("Error in Promise.all: ", error);
-    });
+    })
+    .finally(() => canvas.remove());
 }
 
 // Event listener for download button 
