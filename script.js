@@ -67,11 +67,23 @@ function compositeImages(selectedElements) {
 
   Promise.all(promises).then(() => {
     console.log("All images loaded and drawn.");
+
+    // Create a new link element
+    const link = document.createElement('a');
+
+    // Set the href to the data URL of the canvas
+    link.href = canvas.toDataURL();
+
+    // Set the download attribute to the desired filename
+    link.download = 'composite.png';
+
+    // Append the link to the body
+    document.body.appendChild(link);
+
+    // Programmatically click the link to start the download
+    link.click();
+
+    // Remove the link from the body
+    document.body.removeChild(link);
   });
 }
-
-const downloadButton = document.getElementById('download');
-downloadButton.addEventListener('click', () => {
-  const selection = getSelectedElements();
-  compositeImages(selection);
-});
