@@ -95,4 +95,3 @@ downloadButton.addEventListener('click', () => {
       console.error("Error in Promise.all: ", error);
     });
 }
-}
