@@ -107,3 +107,6 @@ downloadButton.addEventListener('click', () => {
   const selection = getSelectedElements();
   compositeImages(selection);
 });
+
+var skinRender = new SkinRender({/* options */}, document.getElementById("mySkinContainer"));
+skinRender.render("inventivetalent");
