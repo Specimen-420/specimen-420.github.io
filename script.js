@@ -44,6 +44,7 @@ function compositeImages(selectedElements) {
   canvas.width = 64;
   canvas.height = 64;
 
+  // Image loading with promises
   const promises = [];
   const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
 
@@ -71,11 +72,12 @@ function compositeImages(selectedElements) {
     }
   });
 
+  // Download logic executes after all images load
   Promise.all(promises)
     .then(() => {
       console.log("All images loaded and drawn.");
 
-      // Small delay before download
+      // Small delay before download (optional)
       setTimeout(() => {
         // Download logic
         const dataURL = canvas.toDataURL('image/png'); 
