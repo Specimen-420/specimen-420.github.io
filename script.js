@@ -66,15 +66,8 @@ function compositeImages(selectedElements) {
   });
 
   Promise.all(promises).then(() => {
-    layerOrder.forEach((layer) => {
-      if (selectedElements[layer]) {
-        const imageNumber = selectedElements[layer];
-        const filename = imageNumber + '.png';
-        const img = new Image();
-        img.src = filename; 
-        ctx.drawImage(img, 0, 0); // Draw the image here
-      }
-    });
+    console.log("All images loaded and drawn.");
+  });
 }
 
 const downloadButton = document.getElementById('download');
