@@ -48,7 +48,7 @@ function compositeImages(selectedElements) {
   // Image loading with promises
   const promises = [];
   const layerMap = {};
-  const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
+  const layerOrder = ['body', 'eyes', 'shirt', 'pants', 'jacket', 'shoes'];
 
   layerOrder.forEach((layer) => {
     if (selectedElements[layer]) {
@@ -82,7 +82,7 @@ function compositeImages(selectedElements) {
       
       // Applying all images
       layerOrder.forEach((layer) => {
-        ctx.drawImage(img, 0, 0);
+        ctx.drawImage(layerMap[layer], 0, 0);
       });
 
       // Small delay before download (optional)
