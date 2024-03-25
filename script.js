@@ -74,36 +74,22 @@ function compositeImages(selectedElements) {
 
   // Download logic executes after all images load
   Promise.all(promises)
-  .then(() => {
-    console.log("All images loaded and drawn.");
+    .then(() => {
+      console.log("All images loaded and drawn.");
 
-    // ----- First Download (Simulated Click) -----
-    const dataURL = canvas.toDataURL('image/png'); 
-    const downloadLink = document.createElement('a');
-    downloadLink.href = dataURL;
-    downloadLink.download = 'my_skin.png'; 
-    downloadLink.click(); 
-
-    // ----- Second Download (Saving to Downloads) -----
-    downloadToDownloads(dataURL, 'my_skin_download.png');
-  })
-  .catch((error) => {
-    console.error("Error in Promise.all: ", error);
-  });
-}
-
-function downloadToDownloads(dataURL, filename) {
-const link = document.createElement('a');
-link.href = dataURL;
-link.download = filename;  
-
-// This may need adjustment depending on your browser
-link.setAttribute('download', filename); 
-
-// Append to the DOM (hidden)
-document.body.appendChild(link);
-link.click(); 
-document.body.removeChild(link); // Cleanup 
+      // Small delay before download (optional)
+      setTimeout(() => {
+        // Download logic
+        const dataURL = canvas.toDataURL('image/png'); 
+        const downloadLink = document.createElement('a');
+        downloadLink.href = dataURL;
+        downloadLink.download = 'my_skin.png'; 
+        downloadLink.click(); 
+      }, 100); // 100 millisecond delay
+    })
+    .catch((error) => {
+      console.error("Error in Promise.all: ", error);
+    });
 }
 
 // Event listener for download button 
