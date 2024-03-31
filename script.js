@@ -115,7 +115,7 @@ var skinRender = new SkinRender({
   autoResize: false,      // Whether to automatically resize the canvas
   controls: {
       enabled: true,      // Toggle controls
-      zoom: true,         // Toggle zooming
+      zoom: false,         // Toggle zooming
       rotate: true,      // Toggle rotation
       pan: true           // Toggle panning
   },
@@ -123,7 +123,7 @@ var skinRender = new SkinRender({
       x: 20,
       y: 25,
       z: 30,
-      target: [0, 0, 0]   // Where the camera should look
+      target: [0, 10, 0]   // Where the camera should look
   },
   canvas: {               // Dimensions the canvas starts off with (undefined -> use window size)
       width: undefined,
@@ -131,4 +131,4 @@ var skinRender = new SkinRender({
   },
   pauseHidden: true       // Whether to pause animations that aren't currently visible
 }, document.getElementById("mySkinContainer"));
-skinRender.render("inventivetalent");
+skinRender.render("Specimen_");
