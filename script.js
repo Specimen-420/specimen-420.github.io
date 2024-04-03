@@ -163,3 +163,12 @@ loader.load('wide.gltf', (gltf) => {
 
   animate();
 });
+
+// Resize the renderer when the window is resized
+window.addEventListener('resize', () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
