@@ -108,27 +108,58 @@ downloadButton.addEventListener('click', () => {
   compositeImages(selection);
 });
 
-var skinRender = new SkinRender({
-  showOutlines: false,    // Debugging - Show bounding boxes
-  showAxes: false,        // Debugging - Show the scene's axes
-  showGrid: false,        // Debugging - Show coordinate grid
-  autoResize: false,      // Whether to automatically resize the canvas
-  controls: {
-      enabled: true,      // Toggle controls
-      zoom: true,         // Toggle zooming
-      rotate: true,      // Toggle rotation
-      pan: true           // Toggle panning
-  },
-  camera: {               // Camera position
-      x: 20,
-      y: 25,
-      z: 30,
-      target: [0, 0, 0]   // Where the camera should look
-  },
-  canvas: {               // Dimensions the canvas starts off with (undefined -> use window size)
-      width: undefined,
-      height: undefined
-  },
-  pauseHidden: true       // Whether to pause animations that aren't currently visible
-}, document.getElementById("mySkinContainer"));
-skinRender.render("inventivetalent");
+import * as THREE from 'three';
+
+// Create a new Three.js scene
+const scene = new THREE.Scene();
+
+// Create a new Three.js perspective camera
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5; // Adjust the camera position
+
+// Create a new Three.js WebGL renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Add the renderer to the HTML document
+document.getElementById('model-container').appendChild(renderer.domElement);
+
+// Add a light source
+const light = new THREE.AmbientLight(0xffffff); // soft white light
+scene.add(light);
+
+// Create a loading manager
+const manager = new THREE.LoadingManager();
+
+// Load the texture
+const textureLoader = new THREE.TextureLoader(manager);
+const texture = textureLoader.load('one.png');
+
+// Create a new Three.js material using the texture
+const material = new THREE.MeshBasicMaterial({
+  map: texture
+});
+
+// Create a new Three.js GLTF loader
+const loader = new THREE.GLTFLoader(manager);
+
+// Load the GLTF model
+loader.load('wide.gltf', (gltf) => {
+  // Add the GLTF model to the scene
+  scene.add(gltf.scene);
+
+  // Traverse the model and apply the material to each mesh
+  gltf.scene.traverse((node) => {
+    if (node.isMesh) {
+      node.material = material;
+    }
+  });
+
+  // Render the scene
+  const animate = function () {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+
+  animate();
+});
