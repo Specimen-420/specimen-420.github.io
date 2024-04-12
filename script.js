@@ -108,67 +108,35 @@ downloadButton.addEventListener('click', () => {
   compositeImages(selection);
 });
 
-import * as THREE from 'three';
+import * as THREE from 'three'; // Import the Three.js library
 
-// Create a new Three.js scene
+
+// Scene, Camera, and Renderer setup
 const scene = new THREE.Scene();
-
-// Create a new Three.js perspective camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5; // Adjust the camera position
+const renderer = new THREE.WebGLRenderer(); 
 
-// Create a new Three.js WebGL renderer
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+const container = document.getElementById('cube-container');
+renderer.setSize(container.offsetWidth, container.offsetHeight);
+container.appendChild(renderer.domElement);
 
-// Add the renderer to the HTML document
-document.getElementById('model-container').appendChild(renderer.domElement);
+// Create a cube
+const geometry = new THREE.BoxGeometry(1, 1, 1); 
+const material = new THREE.MeshBasicMaterial({ color: 0x00AA00 }); // Green color
+const cube = new THREE.Mesh(geometry, material); 
+scene.add(cube); 
 
-// Add a light source
-const light = new THREE.AmbientLight(0xffffff); // soft white light
-scene.add(light);
+// Position the camera 
+camera.position.z = 3; // Move the camera back slightly
 
-// Create a loading manager
-const manager = new THREE.LoadingManager();
+// Animation loop
+function animate() {
+  requestAnimationFrame(animate);
 
-// Load the texture
-const textureLoader = new THREE.TextureLoader(manager);
-const texture = textureLoader.load('one.png');
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 
-// Create a new Three.js material using the texture
-const material = new THREE.MeshBasicMaterial({
-  map: texture
-});
+  renderer.render(scene, camera);
+}
 
-// Create a new Three.js GLTF loader
-const loader = new THREE.GLTFLoader(manager);
-
-// Load the GLTF model
-loader.load('wide.gltf', (gltf) => {
-  // Add the GLTF model to the scene
-  scene.add(gltf.scene);
-
-  // Traverse the model and apply the material to each mesh
-  gltf.scene.traverse((node) => {
-    if (node.isMesh) {
-      node.material = material;
-    }
-  });
-
-  // Render the scene
-  const animate = function () {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
-  };
-
-  animate();
-});
-
-// Resize the renderer when the window is resized
-window.addEventListener('resize', () => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-});
+animate();
