@@ -100,3 +100,9 @@ div#one:hover, div#two:hover, div#three:hover, div#four:hover, div#five:hover, d
 .selected, div.selected:hover {
   border-color: #00AA00 !important;
 }
+
+#model-container {
+    width: 100%;
+    height: 500px; /* Adjust as needed */
+    margin: 0 auto;
+}
