@@ -108,27 +108,35 @@ downloadButton.addEventListener('click', () => {
   compositeImages(selection);
 });
 
-var skinRender = new SkinRender({
-  showOutlines: false,    // Debugging - Show bounding boxes
-  showAxes: false,        // Debugging - Show the scene's axes
-  showGrid: false,        // Debugging - Show coordinate grid
-  autoResize: false,      // Whether to automatically resize the canvas
-  controls: {
-      enabled: true,      // Toggle controls
-      zoom: true,         // Toggle zooming
-      rotate: true,      // Toggle rotation
-      pan: true           // Toggle panning
-  },
-  camera: {               // Camera position
-      x: 20,
-      y: 25,
-      z: 30,
-      target: [0, 0, 0]   // Where the camera should look
-  },
-  canvas: {               // Dimensions the canvas starts off with (undefined -> use window size)
-      width: undefined,
-      height: undefined
-  },
-  pauseHidden: true       // Whether to pause animations that aren't currently visible
-}, document.getElementById("mySkinContainer"));
-skinRender.render("inventivetalent");
+import * as THREE from 'three'; // Import the Three.js library
+
+
+// Scene, Camera, and Renderer setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer(); 
+
+const container = document.getElementById('cube-container');
+renderer.setSize(container.offsetWidth, container.offsetHeight);
+container.appendChild(renderer.domElement);
+
+// Create a cube
+const geometry = new THREE.BoxGeometry(1, 1, 1); 
+const material = new THREE.MeshBasicMaterial({ color: 0x00AA00 }); // Green color
+const cube = new THREE.Mesh(geometry, material); 
+scene.add(cube); 
+
+// Position the camera 
+camera.position.z = 3; // Move the camera back slightly
+
+// Animation loop
+function animate() {
+  requestAnimationFrame(animate);
+
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+
+  renderer.render(scene, camera);
+}
+
+animate();
