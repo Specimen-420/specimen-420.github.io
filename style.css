@@ -100,3 +100,10 @@ div#one:hover, div#two:hover, div#three:hover, div#four:hover, div#five:hover, d
 .selected, div.selected:hover {
   border-color: #00AA00 !important;
 }
+
+#container3D canvas {
+  width: 100vw !important;
+  position: absolute;
+  top: 1000;
+  left: 0;
+}
