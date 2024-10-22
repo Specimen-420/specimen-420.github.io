@@ -46,31 +46,31 @@
   .dropdown {
   position: relative;
   display: inline-block;
- }
+  }
 .hc:hover a {
       text-decoration: none;
       color: #00AA00;
   }
- .dropdown-content {
+  .dropdown-content {
     display: none;
-   position: absolute;
-   background-color: #333;
+    position: absolute;
+    background-color: #333;
     min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-   z-index: 1;
+    z-index: 1;
   }
 
   .dropdown-content a {
-   color: white;
-   padding: 12px 16px;
-   text-decoration: none;
-   display: block;
- }
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
 
- .dropdown:hover .dropdown-content{
+  .dropdown:hover .dropdown-content{
     display: block;
     color: white;
- }
+  }
 .dropdown-content a:hover {
 color: #00AA00;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
