@@ -7,31 +7,36 @@ function handleBoxClick(event) {
 
   // Add 'selected' class to the clicked box
   event.currentTarget.classList.add('selected');
+
+  // Update the skin whenever a new box is selected
+  updateSkin();
 }
 
-// Attach click event listeners directly to the boxes:
-const bodyOptions = document.querySelectorAll('.body-options div');
-const eyesOptions = document.querySelectorAll('.eyes-options div');
-const shirtOptions = document.querySelectorAll('.shirt-options div');
-const jacketOptions = document.querySelectorAll('.jacket-options div');
-const pantsOptions = document.querySelectorAll('.pants-options div');
-const shoesOptions = document.querySelectorAll('.shoes-options div');
+// New function to update the skin
+function updateSkin() {
+  const selectedElements = getSelectedElements();
+  compositeImages(selectedElements);
+  
+  // Apply the skin to the 3D model
+  if (object) {
+    const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
+    layerOrder.forEach((layer) => {
+      const textureUrl = selectedElements[layer] + '.png'; // Adjust according to your naming convention
+      object.traverse(function (child) {
+        if (child.isMesh) {
+          // Example: apply texture based on the layer
+          if (layer === 'body') {
+            child.material.map = new THREE.TextureLoader().load(textureUrl);
+          }
+          // Additional logic can be added for other layers as needed
+          child.material.needsUpdate = true;
+        }
+      });
+    });
+  }
+}
 
-// Add 'selected' class to the first box in each section
-bodyOptions[0].classList.add('selected');
-eyesOptions[0].classList.add('selected');
-shirtOptions[0].classList.add('selected');
-jacketOptions[0].classList.add('selected');
-pantsOptions[0].classList.add('selected');
-shoesOptions[0].classList.add('selected');
-
-bodyOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-eyesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-shirtOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-jacketOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-pantsOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-shoesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
-
+// Get selected elements function
 function getSelectedElements() {
   return {
     body: document.querySelector('.body-options .selected')?.id,
@@ -43,17 +48,15 @@ function getSelectedElements() {
   };
 }
 
+// Composite images function
 function compositeImages(selectedElements) {
   console.log("compositeImages called with:", selectedElements);
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-
-  // Fixed canvas dimensions (adjust if needed) 
   canvas.width = 64;
   canvas.height = 64;
 
-  // Image loading with promises
   const promises = [];
   const layerMap = {};
   const layerOrder = ['body', 'eyes', 'shirt', 'pants', 'jacket', 'shoes'];
@@ -74,7 +77,6 @@ function compositeImages(selectedElements) {
       promises.push(new Promise((resolve, reject) => {
         img.onload = () => {
           console.log("Image Loaded: ", filename); 
-          // ctx.drawImage(img, 0, 0); // Draw the loaded image on the canvas
           layerMap[layer] = img;
           resolve(); 
         }
@@ -83,7 +85,6 @@ function compositeImages(selectedElements) {
     }
   });
 
-  // Download logic executes after all images load
   Promise.all(promises)
     .then(() => {
       console.log("All images loaded and drawn.");
@@ -95,19 +96,33 @@ function compositeImages(selectedElements) {
 
       // Small delay before download (optional)
       setTimeout(() => {
-        // Download logic
         const dataURL = canvas.toDataURL('image/png'); 
         const downloadLink = document.createElement('a');
         downloadLink.href = dataURL;
         downloadLink.download = 'my_skin.png'; 
         downloadLink.click(); 
-      }, 100); // 100 millisecond delay
+      }, 100);
     })
     .catch((error) => {
       console.error("Error in Promise.all: ", error);
     })
     .finally(() => canvas.remove());
 }
+
+// Attach click event listeners directly to the boxes:
+const bodyOptions = document.querySelectorAll('.body-options div');
+const eyesOptions = document.querySelectorAll('.eyes-options div');
+const shirtOptions = document.querySelectorAll('.shirt-options div');
+const jacketOptions = document.querySelectorAll('.jacket-options div');
+const pantsOptions = document.querySelectorAll('.pants-options div');
+const shoesOptions = document.querySelectorAll('.shoes-options div');
+
+bodyOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+eyesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+shirtOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+jacketOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+pantsOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+shoesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
 
 // Event listener for download button 
 const downloadButton = document.getElementById('download');
@@ -116,31 +131,25 @@ downloadButton.addEventListener('click', () => {
   compositeImages(selection);
 });
 
-
-//Import the THREE.js library
+// Import the THREE.js library
 import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-// To allow for the camera to move around the scene
+// Importing OrbitControls and GLTFLoader
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
-// To allow for importing the .gltf file
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
-//Create a Three.JS Scene
+// Create a Three.JS Scene
 const scene = new THREE.Scene();
-//create a new camera with positions and angles
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-//Keep track of the mouse position, so we can make the eye move
+// Track mouse position
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-//Keep the 3D object on a global variable so we can access it later
+// Keep the 3D object on a global variable
 let object;
 
-//OrbitControls allow the camera to move around the scene
+// OrbitControls for camera movement
 let controls;
-
-//Set which object to render
-let objToRender = 'eye';
 
 // Instantiate a loader for the .gltf file
 const loader = new GLTFLoader();
@@ -149,76 +158,66 @@ const loader = new GLTFLoader();
 loader.load(
   `slim.gltf`,
   function (gltf) {
-    // If the file is loaded, add it to the scene
     object = gltf.scene;
     scene.add(object);
 
-    // Change the texture of the model to one.png
-    object.material.map = new THREE.TextureLoader().load('one.png');
-    object.material.needsUpdate = true; // This line updates the material
-    object.material.map.needsUpdate = true; // This line also updates the texture
+    // Initialize with a default texture
+    object.traverse(function (child) {
+      if (child.isMesh) {
+        child.material.map = new THREE.TextureLoader().load('default.png'); // Use a default texture
+        child.material.needsUpdate = true;
+      }
+    });
   },
   function (xhr) {
-    // While it is loading, log the progress
     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
   },
   function (error) {
-    // If there is an error, log it
     console.error(error);
   }
-  
 );
 
-
-
-//Instantiate a new renderer and set its size
-const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
+// Instantiate a new renderer
+const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-
-//Add the renderer to the DOM
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-//Set how far the camera will be from the 3D model
-camera.position.z = objToRender === "dino" ? 1 : 5;
+// Set camera position
+camera.position.z = 5;
 
-//Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
-topLight.position.set(500, 500, 500) //top-left-ish
+// Add lights to the scene
+const topLight = new THREE.DirectionalLight(0xffffff, 1);
+topLight.position.set(500, 500, 500);
 topLight.castShadow = true;
 scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight;
+const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
-//This adds controls to the camera, so we can rotate / zoom it with the mouse
-
-
-//Render the scene
+// Render the scene
 function animate() {
   requestAnimationFrame(animate);
-  //Here we could add some code to update the scene, adding some automatic movement
 
-  //Make the eye move
-
-    // I've played with the constants here until it looked good 
-    object.rotation.y = Math.PI / -2 + (-3 + mouseX / window.innerWidth * 3)
+  if (object) {
+    object.rotation.y = Math.PI / -2 + (-3 + mouseX / window.innerWidth * 3);
     object.rotation.x = -1.2 + mouseY * 2.5 / window.innerHeight;
+  }
+  
   renderer.render(scene, camera);
 }
 
-//Add a listener to the window, so we can resize the window and the camera
+// Add window resize listener
 window.addEventListener("resize", function () {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-//add mouse position listener, so we can make the eye move
+// Mouse position listener
 document.onmousemove = (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 }
 
-//Start the 3D rendering
+// Start the 3D rendering
 animate();
-
