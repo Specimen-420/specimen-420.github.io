@@ -59,7 +59,7 @@ function compositeImages(selectedElements) {
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  canvas.width = 64;
+  canvas.width = 64; // Adjust based on the size of your images
   canvas.height = 64;
 
   const promises = [];
@@ -96,7 +96,7 @@ function compositeImages(selectedElements) {
       
       // Applying all images
       layerOrder.forEach((layer) => {
-        ctx.drawImage(layerMap[layer], 0, 0);
+        ctx.drawImage(layerMap[layer], 0, 0, canvas.width, canvas.height);
       });
 
       // Small delay before download (optional)
