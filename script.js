@@ -15,18 +15,23 @@ function handleBoxClick(event) {
 // New function to update the skin
 function updateSkin() {
   const selectedElements = getSelectedElements();
-  compositeImages(selectedElements);
   
   // Apply the skin to the 3D model
   if (object) {
     const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
     layerOrder.forEach((layer) => {
       const textureUrl = selectedElements[layer] + '.png'; // Adjust according to your naming convention
+      const texture = new THREE.TextureLoader().load(textureUrl, (texture) => {
+        texture.minFilter = THREE.NearestFilter; // Prevent blurring
+        texture.magFilter = THREE.NearestFilter; // Prevent blurring
+        texture.needsUpdate = true; // Ensure the texture updates
+      });
+
       object.traverse(function (child) {
         if (child.isMesh) {
           // Example: apply texture based on the layer
           if (layer === 'body') {
-            child.material.map = new THREE.TextureLoader().load(textureUrl);
+            child.material.map = texture;
           }
           // Additional logic can be added for other layers as needed
           child.material.needsUpdate = true;
@@ -164,7 +169,12 @@ loader.load(
     // Initialize with a default texture
     object.traverse(function (child) {
       if (child.isMesh) {
-        child.material.map = new THREE.TextureLoader().load('default.png'); // Use a default texture
+        const texture = new THREE.TextureLoader().load('default.png', (texture) => {
+          texture.minFilter = THREE.NearestFilter; // Prevent blurring
+          texture.magFilter = THREE.NearestFilter; // Prevent blurring
+          texture.needsUpdate = true; // Ensure the texture updates
+        });
+        child.material.map = texture;
         child.material.needsUpdate = true;
       }
     });
