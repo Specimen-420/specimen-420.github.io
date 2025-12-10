@@ -1,20 +1,4 @@
-@import url("https://fonts.xz.style/serve/inter.css");
 
-@import url("https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css");
-
-:root {
-  --nc-tx-1: #ffffff;
-  --nc-tx-2: #eeeeee;
-  --nc-bg-1: #000000;
-  --nc-bg-2: #111111;
-  --nc-bg-3: #222222;
-  --nc-lk-1: #00AA00;
-  --nc-lk-2: #00AA00;
-  --nc-lk-tx: #FFFFFF;
-  --nc-ac-1: #00AA00;
-  --nc-ac-tx: #FFFFFF;
-}
-  /* Custom CSS for navigation bar */
   header {
       display: flex;
       justify-content: space-between;

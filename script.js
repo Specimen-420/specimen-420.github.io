@@ -19,24 +19,93 @@ function updateSkin() {
   // Apply the skin to the 3D model
   if (object) {
     const layerOrder = ['body', 'eyes', 'shirt', 'jacket', 'pants', 'shoes'];
-    layerOrder.forEach((layer) => {
-      const textureUrl = selectedElements[layer] + '.png'; // Adjust according to your naming convention
-      const texture = new THREE.TextureLoader().load(textureUrl, (texture) => {
-        texture.minFilter = THREE.NearestFilter; // Prevent blurring
-        texture.magFilter = THREE.NearestFilter; // Prevent blurring
-        texture.needsUpdate = true; // Ensure the texture updates
-      });
-
-      object.traverse(function (child) {
-        if (child.isMesh) {
-          // Example: apply texture based on the layer
-          if (layer === 'body') {
-            child.material.map = texture;
-          }
-          // Additional logic can be added for other layers as needed
-          child.material.needsUpdate = true;
+    const selectedLayers = layerOrder.filter(l => selectedElements[l]);
+    
+    if (selectedLayers.length === 0) {
+      console.log('No layers selected');
+      return;
+    }
+    
+    console.log('Selected elements:', selectedElements);
+    console.log('Selected layers:', selectedLayers);
+    
+    // Load all selected layer images
+    let loadedCount = 0;
+    const layerImages = {};
+    
+    selectedLayers.forEach((layer) => {
+      const boxId = selectedElements[layer];
+      const textureName = idToTextureName[boxId];
+      const textureUrl = 'textures/' + textureName + '.png';
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      
+      img.onload = () => {
+        console.log('Loaded image for layer:', layer, '(' + textureUrl + ')');
+        layerImages[layer] = img;
+        loadedCount++;
+        
+        // Once all images are loaded, composite and apply
+        if (loadedCount === selectedLayers.length) {
+          console.log('All layers loaded, compositing...');
+          
+          // Create canvas for compositing
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = 64;
+          canvas.height = 64;
+          
+          // Draw layers in order (body first, then layered on top)
+          selectedLayers.forEach((layer) => {
+            if (layerImages[layer]) {
+              console.log('Drawing layer:', layer);
+              ctx.drawImage(layerImages[layer], 0, 0, canvas.width, canvas.height);
+            }
+          });
+          
+          // Convert canvas to blob and create ObjectURL
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            console.log('Canvas composite created, loading as texture...');
+            
+            // Load composite as texture
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load(url, (texture) => {
+              console.log('Composite texture loaded successfully');
+              // Match glTF loader expectations
+              texture.flipY = false;
+              if (THREE.sRGBEncoding) texture.encoding = THREE.sRGBEncoding;
+              texture.minFilter = THREE.NearestFilter;
+              texture.magFilter = THREE.NearestFilter;
+              texture.needsUpdate = true;
+              
+              // Apply to all meshes
+              object.traverse(function (child) {
+                if (child.isMesh) {
+                  console.log('Applying composite texture to mesh:', child.name);
+                  child.material.map = texture;
+                  child.material.needsUpdate = true;
+                }
+              });
+              
+              console.log('Composite texture applied successfully');
+              
+              // Clean up blob URL after a delay
+              setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }, undefined, (error) => {
+              console.error('TextureLoader error:', error);
+            });
+          }, 'image/png');
         }
-      });
+      };
+      
+      img.onerror = () => {
+        console.error('Failed to load image for layer:', layer, '(' + textureUrl + ')');
+        loadedCount++;
+      };
+      
+      console.log('Loading image for layer:', layer, '(' + textureUrl + ')');
+      img.src = textureUrl;
     });
   }
 }
@@ -52,6 +121,16 @@ function getSelectedElements() {
     shoes: document.querySelector('.shoes-options .selected')?.id
   };
 }
+
+// Mapping of box IDs to texture file names
+const idToTextureName = {
+  'one': 'one', 'two': 'two', 'three': 'three',
+  'four': 'four', 'five': 'five', 'six': 'six',
+  'seven': 'seven', 'eight': 'eight', 'nine': 'nine',
+  'ten': 'ten', 'eleven': 'eleven', 'twelve': 'twelve',
+  'thirteen': 'thirteen', 'fourteen': 'fourteen', 'fifteen': 'fifteen',
+  'sixteen': 'sixteen', 'seventeen': 'seventeen', 'eighteen': 'eighteen'
+};
 
 // Composite images function
 function compositeImages(selectedElements) {
@@ -69,10 +148,11 @@ function compositeImages(selectedElements) {
   layerOrder.forEach((layer) => {
     if (selectedElements[layer]) {
       const imageNumber = selectedElements[layer];
-      const filename = imageNumber + '.png';
+      const filename = 'textures/' + imageNumber + '.png';
       console.log("Loading image:", filename); 
 
       const img = new Image();
+      img.crossOrigin = "anonymous"; // Allow cross-origin if needed
       img.src = filename; 
 
       img.onerror = () => {
@@ -96,7 +176,9 @@ function compositeImages(selectedElements) {
       
       // Applying all images
       layerOrder.forEach((layer) => {
-        ctx.drawImage(layerMap[layer], 0, 0, canvas.width, canvas.height);
+        if (layerMap[layer]) {
+          ctx.drawImage(layerMap[layer], 0, 0, canvas.width, canvas.height);
+        }
       });
 
       // Small delay before download (optional)
@@ -128,6 +210,24 @@ shirtOptions.forEach(box => box.addEventListener('click', handleBoxClick));
 jacketOptions.forEach(box => box.addEventListener('click', handleBoxClick));
 pantsOptions.forEach(box => box.addEventListener('click', handleBoxClick));
 shoesOptions.forEach(box => box.addEventListener('click', handleBoxClick));
+
+// Select first box in each section by default
+if (bodyOptions.length > 0) bodyOptions[0].classList.add('selected');
+if (eyesOptions.length > 0) eyesOptions[0].classList.add('selected');
+if (shirtOptions.length > 0) shirtOptions[0].classList.add('selected');
+if (jacketOptions.length > 0) jacketOptions[0].classList.add('selected');
+if (pantsOptions.length > 0) pantsOptions[0].classList.add('selected');
+if (shoesOptions.length > 0) shoesOptions[0].classList.add('selected');
+
+// Trigger skin update after model loads (will be called in loader callback too, but this ensures defaults are applied)
+let initialUpdateScheduled = false;
+const scheduleInitialUpdate = () => {
+  if (!initialUpdateScheduled && object) {
+    initialUpdateScheduled = true;
+    updateSkin();
+  }
+};
+setTimeout(scheduleInitialUpdate, 500);
 
 // Event listener for download button 
 const downloadButton = document.getElementById('download');
@@ -166,18 +266,18 @@ loader.load(
     object = gltf.scene;
     scene.add(object);
 
-    // Initialize with a default texture
+    // Initialize - texture will be set when user selects layers
     object.traverse(function (child) {
       if (child.isMesh) {
-        const texture = new THREE.TextureLoader().load('default.png', (texture) => {
-          texture.minFilter = THREE.NearestFilter; // Prevent blurring
-          texture.magFilter = THREE.NearestFilter; // Prevent blurring
-          texture.needsUpdate = true; // Ensure the texture updates
-        });
-        child.material.map = texture;
+        console.log('Mesh:', child.name, 'Material:', child.material.name);
+        console.log('Has map:', !!child.material.map);
+        console.log('Material properties:', child.material);
         child.material.needsUpdate = true;
       }
     });
+    
+    // Trigger initial skin update if selections exist
+    updateSkin();
   },
   function (xhr) {
     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
